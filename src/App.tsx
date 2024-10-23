@@ -1,9 +1,7 @@
+import MainRoutes from './MainRoutes';
+
 function App() {
-  return (
-    <div>
-      Está aqui
-    </div>
-  )
+	return <MainRoutes />;
 }
 
-export default App
+export default App;
