@@ -23,6 +23,8 @@
 	},
 	"plugins": ["react", "@typescript-eslint", "react-hooks"],
 	"rules": {
+		"import/named": 0,
+		"import/no-named-as-default": 0,
 		"no-use-before-define": "off",
 		"@typescript-eslint/no-use-before-define": ["error"],
 		"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
