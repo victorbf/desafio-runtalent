@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { clientSchema, ClientType } from '../../schemas/clientSchema';
 import { useNavigate } from 'react-router-dom';
 import FormContainer from '../../containers/FormContainer';
-import { personType } from '../../utils';
+import { personType } from '../../consts';
 import SnackbarAlert from '../../components/SnackbarAlert';
 import { useState } from 'react';
 

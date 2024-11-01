@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import FormContainer from '../../containers/FormContainer';
 import { useQuery } from '@tanstack/react-query';
 import { Button, Typography } from '@mui/material';
-import { personType } from '../../utils';
+import { personType } from '../../consts';
 import SnackbarAlert from '../../components/SnackbarAlert';
 
 function EditClient() {

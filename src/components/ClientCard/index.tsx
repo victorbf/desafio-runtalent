@@ -2,7 +2,7 @@ import { Person, Apartment } from '@mui/icons-material';
 import { Button, CardContent, Typography } from '@mui/material';
 import ActionDialog from '../ActionDialog';
 import { CardBase, Title, CardActions } from './styles';
-import { companyType } from '../../utils';
+import { companyType } from '../../consts';
 import { ClientCardProps } from './type';
 
 function ClientCard({ client, onEdit, onConfirm }: ClientCardProps) {

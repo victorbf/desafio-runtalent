@@ -16,6 +16,8 @@ import SnackbarAlert from '../../components/SnackbarAlert';
 function ClientList() {
 	const [openDeleteErrorSnackbar, setOpenDeleteErrorSnackbar] =
 		useState<boolean>(false);
+	const [openDeleteSuccessSnackbar, setOpenDeleteSuccessSnackbar] =
+		useState<boolean>(false);
 	const navigate = useNavigate();
 	const url = '/clients';
 
@@ -24,7 +26,7 @@ function ClientList() {
 		const data = await response.json();
 		const result = clientSchema.array().safeParse(data);
 		if (!result.success) {
-			throw new Error('error');
+			throw new Error(result.error.message);
 		}
 		return result.data;
 	};
@@ -35,7 +37,9 @@ function ClientList() {
 			method: 'DELETE',
 		});
 		if (!response.ok) {
-			throw new Error('Erro ao deletar o cliente');
+			return response.text().then((text) => {
+				throw new Error(text);
+			});
 		}
 
 		return await response.json();
@@ -45,6 +49,7 @@ function ClientList() {
 		mutationFn: deleteClient,
 		onSettled: () => {
 			queryClient.invalidateQueries({ queryKey: ['clients'] });
+			setOpenDeleteSuccessSnackbar(true);
 		},
 		onError: () => {
 			setOpenDeleteErrorSnackbar(true);
@@ -61,7 +66,7 @@ function ClientList() {
 			<Title variant='h3'>Lista de Clientes</Title>
 			{error && <BasicText>Ocorreu um erro ao carregar clientes.</BasicText>}
 			{isLoading && <BasicText>Loading...</BasicText>}
-			{data?.length === 0 && (
+			{data?.length === 0 && !error && (
 				<BasicText>Nenhum cliente... crie novos!</BasicText>
 			)}
 			<CardList>
@@ -74,13 +79,22 @@ function ClientList() {
 					/>
 				))}
 			</CardList>
-			<ActionButton type='button' onClick={() => navigate('/clients/new')}>
+			<ActionButton
+				aria-label='Adicionar cliente'
+				type='button'
+				onClick={() => navigate('/clients/new')}
+			>
 				<Add />
 			</ActionButton>
 			<SnackbarAlert
 				open={openDeleteErrorSnackbar}
 				setOpen={setOpenDeleteErrorSnackbar}
-				message='Ocorreu um erro ao deletar cliente.'
+				message='Ocorreu um erro ao remover cliente.'
+			/>
+			<SnackbarAlert
+				open={openDeleteSuccessSnackbar}
+				setOpen={setOpenDeleteSuccessSnackbar}
+				message='Cliente removido com sucesso!'
 			/>
 		</CardListContainer>
 	);

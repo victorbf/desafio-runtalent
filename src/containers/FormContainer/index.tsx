@@ -13,7 +13,7 @@ import CommonForm from '../../components/Forms/CommonForm';
 import { PFFormValuesType, PJFormValuesType } from '../../schemas/clientSchema';
 import { useNavigate } from 'react-router-dom';
 import { FormContainerTypes } from './type';
-import { companyType, personType } from '../../utils';
+import { companyType, personType } from '../../consts';
 import { FormContent, Title, TitleContent } from './style';
 
 function FormContainer({
