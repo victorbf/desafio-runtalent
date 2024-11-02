@@ -7,6 +7,9 @@ export const successHandlers = [
 			status: 200,
 		});
 	}),
+	http.post('/clients', async () => {
+		return new Response(JSON.stringify(mockClientPF), { status: 200 });
+	}),
 	http.delete('/clients/:id', async () => {
 		return new Response(JSON.stringify({}), {
 			status: 200,
@@ -16,6 +19,9 @@ export const successHandlers = [
 
 export const errorFetchHandler = [
 	http.get('/clients', async () => {
+		return new HttpResponse(null, { status: 500 });
+	}),
+	http.post('/clients', async () => {
 		return new HttpResponse(null, { status: 500 });
 	}),
 ];
