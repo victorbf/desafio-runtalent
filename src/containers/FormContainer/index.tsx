@@ -29,7 +29,7 @@ function FormContainer({
 	return (
 		<div>
 			<TitleContent>
-				<Button type='button' onClick={() => navigate(-1)}>
+				<Button type='button' onClick={() => navigate(-1)} aria-label='Voltar'>
 					<ArrowBack />
 				</Button>
 				<Title variant='h3'>{title}</Title>
